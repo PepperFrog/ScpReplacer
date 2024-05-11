@@ -17,7 +17,7 @@ namespace SCPReplacer
 
         public string[] Aliases => new[] { "v" };
 
-        public string Description => "Volunteer to become a SCP that left at the beginning of the round";
+        public string Description => "Volontaire pour devenir un SCP parti au début du tour\r\n";
 
         public bool Execute(ArraySegment<string> arguments, ICommandSender sender, out string response)
         {
@@ -43,13 +43,13 @@ namespace SCPReplacer
                 {
                     if (player.IsScp && player.Role != RoleTypeId.Scp0492)
                     {
-                        response = "SCPs cannot use this command.";
+                        response = "Les SCP ne peuvent pas utiliser cette commande.";
                         return false;
                     }
 
                     if (Plugin.Singleton.ScpsAwaitingReplacement.Any(s => s.Volunteers.Contains(player)))
                     {
-                        response = "You cannot volunteer more than once at a time";
+                        response = "Vous ne pouvez pas faire de bénévolat plus d'une fois à la fois.";
                         return false;
                     }
 
@@ -63,7 +63,7 @@ namespace SCPReplacer
                         });
                     }
 
-                    response = $"You have entered the lottery to become SCP {role.Name}.";
+                    response = $"Vous avez participé à la loterie pour devenir SCP {role.Name}.";
                     player.Broadcast(5,
                         Plugin.Singleton.Translation.BroadcastHeader +
                         Plugin.Singleton.Translation.EnteredLotteryBroadcast.Replace("%NUMBER%", requestedScp),
@@ -96,7 +96,7 @@ namespace SCPReplacer
         public string Command => "human";
 
         public string[] Aliases => new string[] { "no" };
-        public string Description => "Forfeit being an SCP and become a random human class instead (must be used near the start of the round)";
+        public string Description => "Renoncer à être un SCP et devenir une classe humaine aléatoire à la place (doit être utilisé vers le début du tour).";
 
 
         public bool Execute(ArraySegment<string> arguments, ICommandSender sender, out string response)
@@ -105,12 +105,12 @@ namespace SCPReplacer
             {
                 if (!scpPlayer.IsScp)
                 {
-                    response = "You must be an SCP to use this command.";
+                    response = "Vous devez être un SCP pour utiliser cette commande.";
                     return false;
                 }
                 if (scpPlayer.Role == RoleTypeId.Scp0492)
                 {
-                    response = "SCP 049-2 cannot use this command.";
+                    response = "SCP 049-2 ne peut pas utiliser cette commande.";
                     return false;
                 }
                 var config = Plugin.Singleton.Config;
@@ -123,12 +123,12 @@ namespace SCPReplacer
                 Log.Info($"{scpPlayer.Nickname} left {elapsedSeconds} seconds into the round, was SCP-{scpNumber} with {scpPlayer.Health}/{scpPlayer.MaxHealth} HP ({requiredHealth} required for replacement)");
                 if (elapsedSeconds > config.QuitCutoff)
                 {
-                    response = "This command must be used closer to the start of the round.";
+                    response = "Cette commande doit être utilisée plus près du début du tour.";
                     return false;
                 }
                 if (scpPlayer.Health < requiredHealth)
                 {
-                    response = "You are too low health to use this command.";
+                    response = "Votre santé est trop faible pour utiliser cette commande.";
                     return false;
                 }
                 Plugin.Singleton.ScpLeft(scpPlayer);
@@ -138,7 +138,7 @@ namespace SCPReplacer
                     < 0.9f => RoleTypeId.Scientist,
                     _ => RoleTypeId.FacilityGuard
                 };
-                response = $"You became a {newRole}";
+                response = $"Vous êtes devenu un {newRole}.";
                 scpPlayer.Role.Set(newRole, Exiled.API.Enums.SpawnReason.LateJoin, RoleSpawnFlags.All);
                 if (newRole is RoleTypeId.ClassD)
                 {
@@ -147,12 +147,12 @@ namespace SCPReplacer
                 }
                 foreach (CustomRole custom in scpPlayer.GetCustomRoles())
                     custom.RemoveRole(scpPlayer);
-                scpPlayer.Broadcast(10, Plugin.Singleton.Translation.BroadcastHeader + $"You became a <color={newRole.GetColor().ToHex()}>{newRole.GetFullName()}</color>");
+                scpPlayer.Broadcast(10, Plugin.Singleton.Translation.BroadcastHeader + $"Vous êtes devenu un <color={newRole.GetColor().ToHex()}>{newRole.GetFullName()}</color>");
                 return true;
             }
             else
             {
-                response = "You must be a player to use this command";
+                response = "Vous devez être un joueur pour utiliser cette commande.";
                 return false;
             }
         }

@@ -10,9 +10,9 @@ namespace SCPReplacer
 {
     public class Plugin : Plugin<Config, Translations>
     {
-        public override string Name => "SCP Replacer";
-        public override string Author => "Jon M";
-        public override Version Version => new Version(1, 0, 0);
+        public override string Name => PluginInfo.PLUGIN_NAME;
+        public override string Author => PluginInfo.PLUGIN_NAME + "; Jon M";
+        public override Version Version => new Version(PluginInfo.PLUGIN_VERSION);
 
         // Singleton pattern allows easy access to the central state from other classes
         // (e.g. commands)
@@ -54,7 +54,7 @@ namespace SCPReplacer
         {
             foreach (var scp in Player.List.Where(p => p.IsScp))
             {
-                scp.Broadcast(8, "Use <color=#ff4eac>.human</color> in the <color=#b8bd00>~</color> console if you want to be a human class instead");
+                scp.Broadcast(8, "Utilisez <color=#ff4eac>.human</color> dans la console <color=#b8bd00>~</color> si vous souhaitez plutôt être une classe humaine.");
             }
 
             ScpsAwaitingReplacement.Clear();
