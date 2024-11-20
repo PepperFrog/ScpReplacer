@@ -4,6 +4,7 @@ using Exiled.API.Features;
 using Exiled.CustomRoles.API;
 using Exiled.CustomRoles.API.Features;
 using PlayerRoles;
+using MEC;
 using System;
 using System.Linq;
 
@@ -16,7 +17,7 @@ namespace SCPReplacer
 
         public string[] Aliases => new[] { "v" };
 
-        public string Description => "Volontaire pour devenir un SCP parti au début du tour\r\n";
+        public string Description => "Volontaire pour devenir un SCP au début de partie\r\n";
 
         public bool Execute(ArraySegment<string> arguments, ICommandSender sender, out string response)
         {

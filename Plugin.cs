@@ -10,9 +10,9 @@ namespace SCPReplacer
 {
     public class Plugin : Plugin<Config, Translations>
     {
-        public override string Name => PluginInfo.PLUGIN_NAME;
-        public override string Author => PluginInfo.PLUGIN_NAME + "; Jon M";
-        public override Version Version => new Version(PluginInfo.PLUGIN_VERSION);
+        public override string Name => "SCP Replacer";
+        public override string Author => "Jon M";
+        public override Version Version => new Version(1, 0, 0);
 
         // Singleton pattern allows easy access to the central state from other classes
         // (e.g. commands)
