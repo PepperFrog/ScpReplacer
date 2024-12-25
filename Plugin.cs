@@ -12,7 +12,8 @@ namespace SCPReplacer
     {
         public override string Name => "SCP Replacer";
         public override string Author => "Jon M";
-        public override Version Version => new Version(1, 0, 0);
+        public override Version Version => new Version(1, 1, 0);
+        public override Version RequiredExiledVersion => new Version(9, 0, 1);
 
         // Singleton pattern allows easy access to the central state from other classes
         // (e.g. commands)
