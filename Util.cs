@@ -44,9 +44,26 @@ namespace SCPReplacer
             return enumerable.ElementAt(index);
         }
 
+        public static Player RandomPlayerPepper(this IEnumerable<Player> enumerable)
+        {
+            List<Player> list = enumerable.ToList();
+            foreach (Player player in enumerable)
+            {
+                if (player.RemoteAdminPermissions == PlayerPermissions.FriendlyFireDetectorImmunity)
+                {
+                    list.Add(player);
+                    list.Add(player);
+                }
+            }
+            list.ShuffleList();
+            int index = UnityEngine.Random.Range(0, list.Count());
+            return list.ElementAt(index);
+        }
+
         public static void Replace(this ScpToReplace role)
         {
-            var chosenPlayer = role.Volunteers.Where(p => p != null && p.IsAlive && !p.IsScp).RandomElement();
+
+            var chosenPlayer = role.Volunteers.Where(p => p != null && p.IsAlive && !p.IsScp).RandomPlayerPepper();
             role.Volunteers = null;
 
             // Late join spawn reason used to help distinguish from moderator forececlass
