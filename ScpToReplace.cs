@@ -2,7 +2,6 @@
 using Exiled.API.Features.Roles;
 using Exiled.CustomRoles.API.Features;
 using MEC;
-using System.Collections.Generic;
 
 namespace SCPReplacer
 {

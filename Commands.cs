@@ -5,8 +5,6 @@ using Exiled.CustomRoles.API;
 using Exiled.CustomRoles.API.Features;
 using PlayerRoles;
 using MEC;
-using System;
-using System.Linq;
 
 namespace SCPReplacer
 {

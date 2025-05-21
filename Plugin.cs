@@ -2,9 +2,6 @@
 using Exiled.CustomRoles.API;
 using Exiled.Events.EventArgs.Player;
 using PlayerRoles;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace SCPReplacer
 {

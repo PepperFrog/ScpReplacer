@@ -2,8 +2,6 @@
 using Exiled.CustomRoles.API;
 using Exiled.CustomRoles.API.Features;
 using MEC;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text.RegularExpressions;
 
 namespace SCPReplacer
